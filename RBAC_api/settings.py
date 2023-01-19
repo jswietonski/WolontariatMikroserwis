@@ -24,7 +24,8 @@ dotenv.load_dotenv(BASE_DIR / '.env')
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_env_var('DJANGO_SECRET_KEY')
+# SECRET_KEY = get_env_var('DJANGO_SECRET_KEY')
+SECRET_KEY = os.environ["myAppSetting"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG_ENABLED") == 'true'
@@ -87,11 +88,17 @@ WSGI_APPLICATION = 'RBAC_api.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": get_env_var('DB_NAME'),
-        "USER": get_env_var('DB_USER'),
-        "PASSWORD": get_env_var('DB_USER_PASSWORD'),
-        "HOST": get_env_var('DB_HOST'),
-        "PORT": get_env_var('DB_PORT'),
+        #"NAME": get_env_var('DB_NAME'),
+        #"USER": get_env_var('DB_USER'),
+        # "USER": get_env_var('DB_USER'),
+        # "PASSWORD": get_env_var('DB_USER_PASSWORD'),
+        # "HOST": get_env_var('DB_HOST'),
+        # "PORT": get_env_var('DB_PORT'),
+        "NAME": os.environ['DB_NAME'],
+        "USER": os.environ['DB_USER'],
+        "PASSWORD": os.environ['DB_USER_PASSWORD'],
+        "HOST": os.environ['DB_HOST'],
+        "PORT": os.environ['DB_PORT'],
     }
 }
 
@@ -142,8 +149,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Security
 CORS_ALLOW_ALL_ORIGINS = True
 
-CLIENT_ORIGIN_URL = get_env_var('CLIENT_ORIGIN_URL')
-
+# CLIENT_ORIGIN_URL = get_env_var('CLIENT_ORIGIN_URL')
+CLIENT_ORIGIN_URL = os.environ['CLIENT_ORIGIN_URL']
 #CORS_ALLOWED_ORIGINS = [CLIENT_ORIGIN_URL]
 
 # CORS_ALLOW_METHODS = [
@@ -172,8 +179,10 @@ REST_FRAMEWORK = {
 
 # JWT
 
-AUTH0_DOMAIN = get_env_var('AUTH0_DOMAIN')
-AUTH0_AUDIENCE = get_env_var('AUTH0_AUDIENCE')
+# AUTH0_DOMAIN = get_env_var('AUTH0_DOMAIN')
+# AUTH0_AUDIENCE = get_env_var('AUTH0_AUDIENCE')
+AUTH0_DOMAIN = os.environ['AUTH0_DOMAIN']
+AUTH0_AUDIENCE = os.environ['AUTH0_AUDIENCE']
 
 SIMPLE_JWT = {
     'ALGORITHM': 'RS256',
