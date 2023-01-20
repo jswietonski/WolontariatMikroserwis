@@ -66,6 +66,7 @@ def ApiOverview(request):
 
 
 @api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def add_operator(request):
     operator = OperatorProjektuSerializer(data=request.data)
 
@@ -82,9 +83,7 @@ def add_operator(request):
 
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
 def view_operator(request):
-    permission_classes = [IsAuthenticated]
     if request.query_params:
         operator = OperatorProjektu.objects.filter(**request.query_params.dict())
     else:

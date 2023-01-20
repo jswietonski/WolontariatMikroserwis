@@ -88,8 +88,7 @@ WSGI_APPLICATION = 'RBAC_api.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        #"NAME": get_env_var('DB_NAME'),
-        #"USER": get_env_var('DB_USER'),
+        # "NAME": get_env_var('DB_NAME'),
         # "USER": get_env_var('DB_USER'),
         # "PASSWORD": get_env_var('DB_USER_PASSWORD'),
         # "HOST": get_env_var('DB_HOST'),
@@ -149,8 +148,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Security
 CORS_ALLOW_ALL_ORIGINS = True
 
-# CLIENT_ORIGIN_URL = get_env_var('CLIENT_ORIGIN_URL')
-CLIENT_ORIGIN_URL = os.environ['CLIENT_ORIGIN_URL']
+CLIENT_ORIGIN_URL = get_env_var('CLIENT_ORIGIN_URL')
+# CLIENT_ORIGIN_URL = os.environ['CLIENT_ORIGIN_URL']
 #CORS_ALLOWED_ORIGINS = [CLIENT_ORIGIN_URL]
 
 # CORS_ALLOW_METHODS = [
