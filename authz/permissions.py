@@ -5,7 +5,7 @@ class HasPermission(BasePermission):
     permission = None
 
     """
-    User is allowed access if has the expected permission
+    Użytkownik ma dostęp jezeli poosiada okreslone uprawniena
     """
     def has_permission(self, request, view):
         return request.auth and self.permission in request.auth.get('permissions', [])

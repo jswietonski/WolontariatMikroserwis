@@ -25,16 +25,16 @@ class MessageApiView(RetrieveAPIView):
 
 
 class PublicMessageApiView(MessageApiView):
-    text = "The API doesn't require an access token to share this message."
+    text = " API nie potrzebuje tokenu aby uzyskac dostęp"
 
 
 class ProtectedMessageApiView(MessageApiView):
-    text = "The API successfully validated your access token."
+    text = "Api pomyslnie zweryfikowało twoj token."
     permission_classes = [IsAuthenticated]
 
 
 class AdminMessageApiView(MessageApiView):
-    text = "The API successfully recognized you as an admin."
+    text = "Api rozpoznało cię jako administrator."
     permission_classes = [IsAuthenticated, HasAdminPermission]
 
 
@@ -66,7 +66,7 @@ def ApiOverview(request):
 
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated, HasAdminPermission])
 def add_operator(request):
     operator = OperatorProjektuSerializer(data=request.data)
 
@@ -90,7 +90,7 @@ def view_operator(request):
         operator = OperatorProjektu.objects.all()
 
     if operator:
-        data = OperatorProjektuSerializer(operator, many=True).data   #Przy zwracaniu wielu wynikow musi byc atr many=True
+        data = OperatorProjektuSerializer(operator, many=True).data                                                             #Przy zwracaniu wielu wynikow musi byc atr many=True
         return Response(data)
     else:
         print("tu wpada")
